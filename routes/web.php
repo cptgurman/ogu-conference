@@ -53,10 +53,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/', 'IndexController')->name('admin.corpus.index');
         Route::get('/create', 'CreateController')->name('admin.corpus.create');
         Route::post('/', 'StoreController')->name('admin.corpus.store');
-        Route::get('/{user}', 'ShowController')->name('admin.corpus.show');
-        Route::get('/{user}/edit', 'EditController')->name('admin.corpus.edit');
-        Route::patch('/{user}', 'UpdateController')->name('admin.corpus.update');
-        Route::delete('/{user}', 'DeleteController')->name('admin.corpus.delete');
+        Route::get('/{corpus}', 'ShowController')->name('admin.corpus.show');
+        Route::get('/{corpus}/edit', 'EditController')->name('admin.corpus.edit');
+        Route::patch('/{corpus}', 'UpdateController')->name('admin.corpus.update');
+        Route::delete('/{corpus}', 'DeleteController')->name('admin.corpus.delete');
     });
 });
 

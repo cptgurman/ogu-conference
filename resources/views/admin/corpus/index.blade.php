@@ -34,16 +34,18 @@
         <div class="row p-3">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
+                    {{-- <div class="card-header">
                         <h3 class="card-title">Список корпусов</h3>
-                    </div>
+                    </div> --}}
 
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th colspan="2">Название</th>
+                                    <th colspan="2">Адрес</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -52,6 +54,7 @@
                                     <tr>
                                         <td>{{ $corpus->id }}</td>
                                         <td colspan="2">{{ $corpus->name }}</td>
+                                        <td colspan="2">{{ $corpus->address }}</td>
                                         <td>
                                             <a href="{{ route('admin.corpus.show', $corpus->id) }}"> <i
                                                     class="fa fa-eye"></i></a>

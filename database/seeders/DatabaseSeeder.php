@@ -11,6 +11,8 @@ use App\Models\Role;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Config;
 
+
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -20,6 +22,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         // Добавляем степени образования
         $educations = Config::get('constants.education');
         foreach ($educations as $education) {

@@ -1,18 +1,18 @@
 <?php
 
 namespace App\Http\Controllers\Admin\Corpus;
-
+use App\Http\Requests\Admin\Corpus\UpdateRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\User\UpdateRequest;
-use App\Models\User;
+use App\Models\Corpus;
 
 class UpdateController extends Controller
 {
-    public function __invoke(UpdateRequest $request, User $user)
+    public function __invoke(UpdateRequest $request, Corpus $corpus)
     {
         $data = $request->validated();
-        $user->update($data);
-        return redirect()->route('admin.user.show', compact('user'));
+        $corpus->update($data);
+        return redirect()->route('admin.corpus.show', compact('corpus'));
     }
 }
