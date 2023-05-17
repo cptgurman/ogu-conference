@@ -18,7 +18,6 @@ class CreateFacultiesTable extends Migration
             $table->id();
             $table->string('name'); //Название
             $table->timestamps();
-
             $table->softDeletes(); //Чтобы полностью не удалять
         });
     }

@@ -42,10 +42,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/', 'IndexController')->name('admin.faculty.index');
         Route::get('/create', 'CreateController')->name('admin.faculty.create');
         Route::post('/', 'StoreController')->name('admin.faculty.store');
-        Route::get('/{user}', 'ShowController')->name('admin.faculty.show');
-        Route::get('/{user}/edit', 'EditController')->name('admin.faculty.edit');
-        Route::patch('/{user}', 'UpdateController')->name('admin.faculty.update');
-        Route::delete('/{user}', 'DeleteController')->name('admin.faculty.delete');
+        Route::get('/{faculty}', 'ShowController')->name('admin.faculty.show');
+        Route::get('/{faculty}/edit', 'EditController')->name('admin.faculty.edit');
+        Route::patch('/{faculty}', 'UpdateController')->name('admin.faculty.update');
+        Route::delete('/{faculty}', 'DeleteController')->name('admin.faculty.delete');
     });
 
     //Роуты для управления корпусами

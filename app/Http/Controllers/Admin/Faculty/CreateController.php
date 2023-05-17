@@ -3,15 +3,13 @@
 namespace App\Http\Controllers\Admin\Faculty;
 
 use App\Http\Controllers\Controller;
-use App\Models\Role;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\Corpus;
 
 class CreateController extends Controller
 {
     public function __invoke()
     {
-        $roles = Role::all();
-        return view('admin.user.create', compact('roles'));
+        $corpuses = Corpus::all();
+        return view('admin.faculty.create', compact('corpuses'));
     }
 }

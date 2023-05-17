@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin\Faculty;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\User\UpdateRequest;
-use App\Models\User;
+use App\Http\Requests\Admin\Faculty\UpdateRequest;
+use App\Models\Faculty;
 
 class UpdateController extends Controller
 {
-    public function __invoke(UpdateRequest $request, User $user)
+    public function __invoke(UpdateRequest $request, Faculty $faculty)
     {
         $data = $request->validated();
-        $user->update($data);
-        return redirect()->route('admin.user.show', compact('user'));
+        $faculty->update($data);
+        return redirect()->route('admin.faculty.show', compact('faculty'));
     }
 }

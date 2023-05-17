@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Admin\Faculty;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\Faculty;
 
 class ShowController extends Controller
 {
-    public function __invoke(User $user)
+    public function __invoke(Faculty $faculty)
     {
-        return view('admin.user.show', compact('user'));
+        return view('admin.faculty.show', compact('faculty'));
     }
 }
