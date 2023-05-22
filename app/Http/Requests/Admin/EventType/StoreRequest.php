@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Faculty;
+namespace App\Http\Requests\Admin\EventType;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,6 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'corpus_id' => 'required|exists:corpuses,id',
         ];
     }
 }

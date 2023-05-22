@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Faculty;
+namespace App\Http\Requests\Admin\Role;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,7 +25,6 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'corpus_id' => 'required|exists:corpuses,id',
         ];
     }
 }

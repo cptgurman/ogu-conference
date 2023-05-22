@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Admin\Faculty;
 
+use App\Models\Corpus;
+use App\Models\Faculty;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\User;
-use Illuminate\Http\Request;
 
 class EditController extends Controller
 {
-    public function __invoke(User $user)
+    public function __invoke(Faculty $faculty)
     {
-        $roles = User::getRoles();
-        return view('admin.user.edit', compact('user', 'roles'));
+        $corpuses = Corpus::all();
+        return view('admin.faculty.edit', compact('faculty', 'corpuses'));
     }
 }

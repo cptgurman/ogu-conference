@@ -121,13 +121,13 @@
                      </a>
                      <ul class="nav nav-treeview">
                          <li class="nav-item">
-                             <a href="pages/tables/simple.html" class="nav-link">
+                             <a href="{{ route('admin.conference.create') }}" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Создать конференцию</p>
                              </a>
                          </li>
                          <li class="nav-item">
-                             <a href="pages/tables/data.html" class="nav-link">
+                             <a href="{{ route('admin.conference.index') }}" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Список конференций</p>
                              </a>
@@ -144,31 +144,31 @@
                      </a>
                      <ul class="nav nav-treeview">
                          <li class="nav-item">
-                             <a href="pages/tables/simple.html" class="nav-link">
+                             <a href="{{ route('admin.role.index') }}" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Роли</p>
                              </a>
                          </li>
                          <li class="nav-item">
-                             <a href="pages/tables/data.html" class="nav-link">
+                             <a href="{{ route('admin.education.index') }}" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Образование</p>
                              </a>
                          </li>
                          <li class="nav-item">
-                             <a href="pages/tables/data.html" class="nav-link">
+                             <a href="{{ route('admin.academic_degree.index') }}" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Ученая степень</p>
                              </a>
                          </li>
                          <li class="nav-item">
-                             <a href="pages/tables/data.html" class="nav-link">
+                             <a href="{{ route('admin.academic_title.index') }}" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Ученое звание</p>
                              </a>
                          </li>
                          <li class="nav-item">
-                             <a href="pages/tables/data.html" class="nav-link">
+                             <a href="{{ route('admin.event_type.index') }}" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Виды участия</p>
                              </a>

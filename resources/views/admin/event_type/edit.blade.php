@@ -12,7 +12,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Главная</a></li>
-                            <li class="breadcrumb-item active">Редактирование факультета</li>
+                            <li class="breadcrumb-item active">Редактирование формы участия</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -26,35 +26,19 @@
 
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="{{ route('admin.faculty.update', $faculty->id) }}" method="POST">
+                <form action="{{ route('admin.event_type.update', $event_type->id) }}" method="POST">
                     @csrf
                     @method('PATCH')
-                    <input type="hidden" name="faculty_id" value="{{ $faculty->id }}">
+                    <input type="hidden" name="event_type_id" value="{{ $event_type->id }}">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Название</label>
                             <input type="text" name="name" class="form-control" placeholder="Введите название"
-                                value="{{ $faculty->name }}">
+                                value="{{ $event_type->name }}">
                             @error('name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Корпус</label>
-                            <select name="corpus_id" class="select2" style="width: 100%;">
-                                <option value="" disabled>Выберите корпус</option>
-                                @foreach ($corpuses as $corpus)
-                                    <option value="{{ $corpus->id }}"
-                                        {{ $corpus->id == old('corpus_id') ? 'selected' : '' }}>
-                                        {{ $corpus->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('corpus_id')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
                     </div>
                     <!-- /.card-body -->
 

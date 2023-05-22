@@ -34,6 +34,7 @@
 
 
 
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -122,6 +123,22 @@
                 bsCustomFileInput.init();
             });
 
+            // Датапикеры
+            $('#date_start_reg').datetimepicker({
+                locale: 'ru'
+            });
+
+            $('#date_end_reg').datetimepicker({
+                locale: 'ru'
+            });
+
+            $('#date_start').datetimepicker({
+                locale: 'ru'
+            });
+
+            $('#date_end').datetimepicker({
+                locale: 'ru'
+            });
 
         });
     </script>

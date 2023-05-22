@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Admin\Faculty;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Models\Faculty;
 
 class DeleteController extends Controller
 {
-    public function __invoke(User $user)
+    public function __invoke(Faculty $faculty)
     {
-        $user->delete();
-        return redirect()->route('admin.user.index');
+        $faculty->delete();
+        return redirect()->route('admin.faculty.index');
     }
 }
