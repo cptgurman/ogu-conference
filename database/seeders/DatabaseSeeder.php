@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\AcademicDegree;
 use App\Models\AcademicTitle;
 use App\Models\Competence;
+use App\Models\ConferenceStatus;
 use App\Models\Education;
 use App\Models\EventType;
 use App\Models\Role;
@@ -57,6 +58,12 @@ class DatabaseSeeder extends Seeder
         $competences = Config::get('constants.competences');
         foreach ($competences as $competence) {
             Competence::create(['name' => $competence]);
+        }
+
+        // Добавляем статусы конференций
+        $conference_statuses = Config::get('constants.conference_statuses');
+        foreach ($conference_statuses as $conference_status) {
+            ConferenceStatus::create(['name' => $conference_status]);
         }
     }
 }

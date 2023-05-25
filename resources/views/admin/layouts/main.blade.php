@@ -31,10 +31,6 @@
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-
-
-
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -73,6 +69,8 @@
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
+    <!--Самописные скрипты для админки -->
+    <script src="{{ asset('js/main.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- ChartJS -->
@@ -102,51 +100,8 @@
     <script src="{{ asset('dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
-
-    <script>
-        $(document).ready(function() {
-
-            $('.select2').select2();
-
-            $('#summernote').summernote({
-                toolbar: [
-                    // [groupName, [list of button]]
-                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                    ['font', ['strikethrough', 'superscript', 'subscript']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['height', ['height']]
-                ]
-            });
-
-            $(function() {
-                bsCustomFileInput.init();
-            });
-
-            // Датапикеры
-            $('#date_start_reg').datetimepicker({
-                format: 'L',
-                locale: 'ru'
-            });
-
-            $('#date_end_reg').datetimepicker({
-                format: 'L',
-                locale: 'ru'
-            });
-
-            $('#date_start').datetimepicker({
-                format: 'L',
-                locale: 'ru'
-            });
-
-            $('#date_end').datetimepicker({
-                format: 'L',
-                locale: 'ru'
-            });
-
-        });
-    </script>
+    <!-- Files -->
+    <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 
     <style>
         .custom-file-input:lang(en)~.custom-file-label::after {

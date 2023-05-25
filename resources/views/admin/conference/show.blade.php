@@ -41,8 +41,12 @@
 
                             <tbody>
                                 <tr>
-                                    <td>ID</td>
+                                    <td>№</td>
                                     <td>{{ $academic_title->id }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Название</td>
+                                    <td>{{ $academic_title->name }}</td>
                                 </tr>
                                 <tr>
                                     <td>Название</td>

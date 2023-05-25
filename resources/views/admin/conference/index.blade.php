@@ -42,20 +42,29 @@
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap">
                             <thead>
-                                <tr>
-                                    <th>ID</th>
+                                <tr class="text-center">
+                                    <th>№</th>
                                     <th>Название</th>
+                                    <th>Дата проведения</th>
+                                    <th>Начало регистрации</th>
+                                    <th>Окончание регистрации</th>
                                     <th>Тип участия</th>
-                                    <th>Дата начала</th>
-                                    <th>Дата окончания</th>
-                                    <th></th>
+                                    <th>Кол-во участников</th>
+                                    <th>Статус</th>
+                                    <th colspan="3"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($conferences as $conference)
-                                    <tr>
+                                    <tr class="text-center">
                                         <td>{{ $conference->id }}</td>
-                                        <td colspan="2">{{ $conference->name }}</td>
+                                        <td>{{ $conference->name }}</td>
+                                        <td>{{ $conference->conf_date }}</td>
+                                        <td>{{ $conference->reg_date_start }}</td>
+                                        <td>{{ $conference->reg_date_end }}</td>
+                                        <td>{{ $event_types[$conference->event_type_id] }}</td>
+                                        <td>0</td>
+                                        <td>{{ $statuses[$conference->status_id] }}</td>
                                         <td>
                                             <a href="{{ route('admin.conference.show', $conference->id) }}"> <i
                                                     class="fa fa-eye"></i></a>
@@ -63,15 +72,6 @@
                                         <td>
                                             <a href="{{ route('admin.conference.edit', $conference->id) }}"> <i
                                                     class="fa fa-pen text-green"></i></a>
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('admin.conference.delete', $conference->id) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="border-0 bg-transparent"><i
-                                                        class="fa fa-trash text-danger"></i></a></button>
-                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

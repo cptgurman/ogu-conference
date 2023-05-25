@@ -21,21 +21,25 @@ class CreateConferencesTable extends Migration
             $table->unsignedBigInteger('event_type_id'); //ID тип проведения конференции (очный, заочный ...)
             $table->unsignedBigInteger('faculty_id'); //ID факультета
             $table->unsignedBigInteger('corpus_id'); //ID корпуса
-            $table->date('conf_date_start'); //Дата начала конференции
-            $table->date('conf_date_end'); //Дата окончания конференции
+            $table->date('conf_date'); //Дата проведения конференции
             $table->date('reg_date_start'); //Дата начала регистрации
             $table->date('reg_date_end'); //Дата окончания регистрации
+            $table->string('preview_image')->nullable(); //Картинка превью
+            $table->string('image')->nullable(); //Баннер или что еще
+            $table->unsignedBigInteger('status_id'); //ID статуса конференции
             $table->timestamps();
 
             //Создаем индексацию
             $table->index('event_type_id', 'conference_event_type_idx');
             $table->index('faculty_id', 'conference_faculty_idx');
             $table->index('corpus_id', 'conference_corpus_idx');
+            $table->index('status_id', 'conference_status_idx');
 
             //Столбец в нашей траблицы -> Другая таблица -> Столбец на котороый ссылается
             $table->foreign('event_type_id', 'conference_event_type_fk')->on('event_types')->references('id');
             $table->foreign('faculty_id', 'conference_faculty_fk')->on('faculties')->references('id');
             $table->foreign('corpus_id', 'conference_corpus_fk')->on('corpuses')->references('id');
+            $table->foreign('status_id', 'conference_status_fk')->on('conference_statuses')->references('id');
 
             $table->softDeletes(); //Чтобы полностью не удалять
         });

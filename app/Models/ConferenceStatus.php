@@ -6,14 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Conference extends Model
+class ConferenceStatus extends Model
 {
     use HasFactory;
     use SoftDeletes;
     protected $guarded = false; //Чтобы можно было записывать, в массиве можно указать поля, которые нужно заблочить
-
-    public function section()
-    {
-        return $this->hasMany(Section::class, 'conference_id', 'id');
-    }
 }

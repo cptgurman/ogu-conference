@@ -17,7 +17,6 @@ class CreateSectionsTable extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->string('name'); //Название
-            $table->text('description'); //Описание секции конференции
             $table->unsignedBigInteger('conference_id'); //ID конференции
             $table->timestamps();
 

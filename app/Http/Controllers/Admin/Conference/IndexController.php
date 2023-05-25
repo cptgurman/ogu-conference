@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin\Conference;
 
 use App\Http\Controllers\Controller;
 use App\Models\Conference;
+use App\Models\ConferenceStatus;
+use App\Models\EventType;
 
 class IndexController extends Controller
 {
@@ -11,6 +13,8 @@ class IndexController extends Controller
     {
         // Список всех факультетов
         $conferences = Conference::all();
-        return view('admin.conference.index', compact('conferences'));
+        $statuses = ConferenceStatus::all()->pluck('name', 'id')->toArray();
+        $event_types = EventType::all()->pluck('name', 'id')->toArray();
+        return view('admin.conference.index', compact('conferences', 'statuses', 'event_types'));
     }
 }
