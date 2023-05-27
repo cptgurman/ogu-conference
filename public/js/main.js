@@ -1,20 +1,30 @@
 $(document).ready(function () {
 
     // Добавляем доп секцию для конференции
-    $('[data-add-conference-section]').click(function () {
+    $('body').on('click', '[data-add-conference-section]', function () {
+
+        // Кол-во секций
+        let number = $(this).attr('data-count');
+
+        $(this).attr('data-count', ++number);
 
         // Копируем шаблон и вставляем
-        let number = $(this).data('count');
-
         let section_template_html = $('[data-section-template]').clone().html();
         let section_template = $(section_template_html);
-        section_template.find('[data-section-label]').text(`Секция №${number + 1}`);
-        $(this).data('count', number + 1)
+        section_template.find('[data-section-label]').text(`Секция №${number}`);
 
         $(this).closest('.form-group').before('<div class="form-group">' +
             section_template.html() + '</div>'
         );
     });
+
+    // Удаляем доп секцию у конференции
+    $('body').on('click', '[data-delete-section]', function () {
+
+        // Удаляем текущую
+        $(this).closest('.form-group').remove();
+    });
+
 
     $('.select2').select2();
 

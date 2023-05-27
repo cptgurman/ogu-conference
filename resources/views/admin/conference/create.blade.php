@@ -173,13 +173,13 @@
                             @enderror
                         </div>
 
-                        <div class="card card-primary m-0">
+                        <div class="card card-primary m-0" data-sections>
                             <div class="card-header">
                                 <h3 class="card-title">Список секций</h3>
                             </div>
 
                             <div class="card-body">
-                                <div class="form-group">
+                                <div class="form-group" data-section-body>
                                     <label> Секция №1</label>
                                     <div class="input-group input-group-sm">
                                         <input type="text" name="section_names[]" class="form-control">
@@ -206,12 +206,12 @@
     </div>
 
     <template data-section-template>
-        <div class="form-group">
+        <div class="form-group" data-section-body>
             <label data-section-label></label>
             <div class="input-group input-group-sm">
                 <input type="text" name="section_names[]" class="form-control">
                 <span class="input-group-append">
-                    <button type="button" class="btn btn-danger btn-flat">Удалить</button>
+                    <button type="button" class="btn btn-danger btn-flat" data-delete-section>Удалить</button>
                 </span>
             </div>
         </div>

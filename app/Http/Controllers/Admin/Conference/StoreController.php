@@ -23,27 +23,22 @@ class StoreController extends Controller
         $data['reg_date_end'] = Carbon::parse($data['reg_date_end']);
 
         if (!empty($data['preview_image'])) {
-            $data['preview_image'] = Storage::put('/images', $data['preview_image']);
+            $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
         }
 
         if (!empty($data['image'])) {
-            $data['image'] = Storage::put('/images', $data['image']);
+            $data['image'] = Storage::disk('public')->put('/images', $data['image']);
         }
 
         // Проставляем статус "Новая"
         $data['status_id'] = 1;
 
         // Добавляем конференцию
-        $conference_id = Conference::firstOrCreate($data)->id;
+        $conference_id = Conference::firstOrCreate($data);
 
         // Добавляем секции
         foreach ($sections as $value) {
-            $section_data = [
-                'name' =>  $value,
-                'conference_id' => $conference_id,
-            ];
-
-            Section::create($section_data);
+            $conference_id->section()->create(['name' => $value]);
         }
 
         return redirect()->route('admin.conference.index');

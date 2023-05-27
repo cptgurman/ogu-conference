@@ -30,8 +30,10 @@
 
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="{{ route('admin.conference.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.conference.update', $conference->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
+                    @method('PATCH')
                     <div class="card-body">
                         <div class="form-group">
                             <label>Наименование</label>
@@ -61,8 +63,12 @@
                             @enderror
                         </div>
                         <div class="form-group  w-25">
+
                             <label for="exampleInputFile">Картинка для превью</label>
-                            <img src="" alt="" width="50px">
+                            <div class="w-25 py-2">
+                                <img class="rounded" src="{{ asset('storage/' . $conference->preview_image) }}"
+                                    alt="{{ $conference->preview_image }}" width="150px">
+                            </div>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" name="preview_image" class="custom-file-input"
@@ -74,10 +80,13 @@
                         </div>
                         <div class="form-group  w-25">
                             <label for="exampleInputFile">Баннер</label>
+                            <div class="w-25 py-2">
+                                <img class="rounded" src="{{ asset('storage/' . $conference->image) }}"
+                                    alt="{{ $conference->image }}" width="150px">
+                            </div>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" name="image" value="{{ old('image') }}"
-                                        class="custom-file-input" id="exampleInputFile">
+                                    <input type="file" name="image" class="custom-file-input" id="exampleInputFile">
                                     <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
                                 </div>
                             </div>
@@ -174,29 +183,30 @@
                             @enderror
                         </div>
 
-                        <div class="card card-primary m-0">
+                        <div class="card card-primary m-0" data-sections>
                             <div class="card-header">
                                 <h3 class="card-title">Список секций</h3>
                             </div>
                             <div class="card-body">
                                 @foreach ($sections as $key => $section)
-                                    <div class="form-group">
+                                    <div class="form-group" data-section-body>
                                         <label data-section-label> Секция №{{ ++$key }}</label>
                                         <div class="input-group input-group-sm">
                                             <input type="text" name="section_names[]" value="{{ $section->name }}"
                                                 class="form-control">
                                             @if ($key != 1)
                                                 <span class="input-group-append">
-                                                    <button type="button"
-                                                        class="btn btn-danger btn-flat">Удалить</button>
+                                                    <button type="button" class="btn btn-danger btn-flat"
+                                                        data-delete-section>Удалить</button>
                                                 </span>
                                             @endif
                                         </div>
                                     </div>
                                 @endforeach
                                 <div class="form-group m-0">
-                                    <button type="button" data-add-conference-section data-count="1"
-                                        class="btn btn-primary btn-sm">Добавить секцию</button>
+                                    <button type="button" data-add-conference-section
+                                        data-count="{{ $sections->count() }}" class="btn btn-primary btn-sm">Добавить
+                                        секцию</button>
                                 </div>
                             </div>
                         </div>
@@ -213,9 +223,14 @@
     </div>
 
     <template data-section-template>
-        <div class="form-group">
-            <label data-section-label> Секция №1</label>
-            <input type="text" name="section_names[]" class="form-control" placeholder="Введите наименование секции">
+        <div class="form-group" data-section-body>
+            <label data-section-label></label>
+            <div class="input-group input-group-sm">
+                <input type="text" name="section_names[]" class="form-control">
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-danger btn-flat" data-delete-section>Удалить</button>
+                </span>
+            </div>
         </div>
     </template>
     <!-- /.content-wrapper -->
