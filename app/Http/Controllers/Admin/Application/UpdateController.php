@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Conference;
+namespace App\Http\Controllers\Admin\Application;
 
 use App\Models\Conference;
+use App\Models\Application;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -10,7 +11,7 @@ use App\Http\Requests\Admin\Conference\UpdateRequest;
 
 class UpdateController extends Controller
 {
-    public function __invoke(UpdateRequest $request, Conference $conference)
+    public function __invoke(UpdateRequest $request, Application $conference)
     {
         try {
             $data = $request->validated(); //данные пришедшие в случае успешной валидации

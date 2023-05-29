@@ -12,7 +12,8 @@ class IndexController extends Controller
     public function __invoke()
     {
         // Список всех факультетов
-        $conferences = Conference::all();
+        $conferences = Conference::orderByDesc('id')->paginate(10); //Сортировка по убыванию
+        // dd($conferences);
         $statuses = ConferenceStatus::all()->pluck('name', 'id')->toArray();
         $event_types = EventType::all()->pluck('name', 'id')->toArray();
         return view('admin.conference.index', compact('conferences', 'statuses', 'event_types'));

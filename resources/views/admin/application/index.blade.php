@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Список конференций</h1>
+                        <h1 class="m-0">Список заявок</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Главная</a></li>
-                            <li class="breadcrumb-item active">Список конференций</li>
+                            <li class="breadcrumb-item active">Список заявок</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -24,7 +24,7 @@
         <div class="row p-3">
             <div class="content">
                 <div class="container-fluid">
-                    <a href="{{ route('admin.conference.create') }}" type="button" class="btn btn-primary">Добавить</a>
+                    <a href="{{ route('admin.application.create') }}" type="button" class="btn btn-primary">Добавить</a>
                 </div>
                 <!-- /.container-fluid -->
             </div>
@@ -44,34 +44,32 @@
                             <thead>
                                 <tr class="text-center">
                                     <th>№</th>
-                                    <th>Название</th>
-                                    <th>Дата проведения</th>
-                                    <th>Начало регистрации</th>
-                                    <th>Окончание регистрации</th>
-                                    <th>Тип участия</th>
-                                    <th>Кол-во участников</th>
-                                    <th>Статус</th>
-                                    <th colspan="3"></th>
+                                    <th>Конференция</th>
+                                    <th>Участник</th>
+                                    <th>Дата подачи</th>
+                                    <th>Файл</th>
+                                    <th>Приглашение</th>
+                                    <th>Отель</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($conferences as $conference)
+                                @foreach ($applications as $application)
                                     <tr class="text-center">
-                                        <td>{{ $conference->id }}</td>
-                                        <td><a
-                                                href="{{ route('admin.conference.show', $conference->id) }}">{{ $conference->name }}</a>
-                                        </td>
-                                        <td>{{ $conference->conf_date }}</td>
-                                        <td>{{ $conference->reg_date_start }}</td>
-                                        <td>{{ $conference->reg_date_end }}</td>
-                                        <td>{{ $event_types[$conference->event_type_id] }}</td>
-                                        <td>0</td>
-                                        <td>{{ $statuses[$conference->status_id] }}</td>
                                         <td>
-                                            <a href="{{ route('admin.conference.show', $conference->id) }}"> <i
+                                            <a
+                                                href="{{ route('admin.application.show', $application->id) }}">{{ $application->id }}</a>
+                                        </td>
+                                        <td>{{ $application->conference->name }}</td>
+                                        <td>{{ $application->user->name }}</td>
+                                        <td>{{ $application->created_at }}</td>
+                                        <td><a href="{{ asset('storage/' . $application->file) }}">Скачать</a></td>
+                                        <td>{{ $application->invitation ? 'Да' : 'Нет' }}</td>
+                                        <td>{{ $application->hotel ? 'Да' : 'Нет' }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.application.show', $application->id) }}"> <i
                                                     class="fa fa-eye pr-3"></i></a>
 
-                                            <a href="{{ route('admin.conference.edit', $conference->id) }}"> <i
+                                            <a href="{{ route('admin.application.edit', $application->id) }}"> <i
                                                     class="fa fa-pen text-gray"></i></a>
                                         </td>
                                     </tr>
@@ -85,7 +83,7 @@
                 </div>
 
                 <div class="">
-                    {{ $conferences->links() }}
+                    {{ $applications->links() }}
                 </div>
                 <!-- /.card -->
             </div>

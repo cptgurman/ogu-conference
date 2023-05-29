@@ -19,7 +19,9 @@
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
-
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
         <!-- Main content -->
         <div class="content">
             <div class="card card-primary mx-2">
@@ -47,12 +49,18 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label>Пароль</label>
+                            <input type="text" name="password" class="form-control" placeholder="Введите пароль"
+                                value="{{ old('password') }}">
+                            @error('password')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
 
                         <div class="form-group w-25">
                             <label>Роль</label>
-                            <select class="form-control select2" name="role">
-                                <option disabled selected>Выберите роль</option>
-
+                            <select class="form-control select2" multiple name="role_ids[]">
                                 @foreach ($roles as $role)
                                     <option value="{{ $role->id }}" {{ $role->id == old('role') ? 'selected' : '' }}>
                                         {{ $role->name }}

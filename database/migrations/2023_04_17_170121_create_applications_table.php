@@ -21,8 +21,8 @@ class CreateApplicationsTable extends Migration
             $table->unsignedBigInteger('conference_id'); //ID конференции
             $table->unsignedBigInteger('participation_form_id'); //ID конференции
             $table->unsignedBigInteger('conference_section_id'); //ID конференции
-            $table->boolean('hotel');
-            $table->boolean('invitation');
+            $table->boolean('hotel')->nullable();
+            $table->boolean('invitation')->nullable();
 
             //Создаем индексацию
             $table->index('conference_id', 'application_conference_idx');

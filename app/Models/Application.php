@@ -11,4 +11,20 @@ class Application extends Model
     use HasFactory;
     use SoftDeletes;
     protected $guarded = false; //Чтобы можно было записывать, в массиве можно указать поля, которые нужно заблочить
+
+    // Дефолтные значения
+    protected $attributes = [
+        'hotel' => false,
+        'invitation' => false,
+    ];
+
+    public function conference()
+    {
+        return $this->belongsTo(Conference::class, 'conference_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

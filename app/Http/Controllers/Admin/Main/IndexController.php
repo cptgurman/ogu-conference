@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin\Main;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
     public function __invoke()
     {
-        return view('admin.main.index');
+        $user = User::find(auth()->user()->id);
+        return view('admin.main.index', compact('user'));
     }
 }

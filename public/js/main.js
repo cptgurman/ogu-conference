@@ -40,6 +40,8 @@ $(document).ready(function () {
         ]
     });
 
+    $('#summernote_disable').summernote('disable');
+
     // Датапикеры
     let reg_date_start = $('#reg_date_start').data('date');
     $('#reg_date_start').datetimepicker({

@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 //роутинг для страницы админки, префикс для того чтобы в url был admin
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
 
     // Главная в админке
     Route::group(['namespace' => 'Main'], function () {
@@ -103,6 +103,17 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::delete('/{academic_title}', 'DeleteController')->name('admin.academic_title.delete');
     });
 
+    //Роуты для управления ролями
+    Route::group(['namespace' => 'Role', 'prefix' => 'role'], function () {
+        Route::get('/', 'IndexController')->name('admin.role.index');
+        Route::get('/create', 'CreateController')->name('admin.role.create');
+        Route::post('/', 'StoreController')->name('admin.role.store');
+        Route::get('/{role}', 'ShowController')->name('admin.role.show');
+        Route::get('/{role}/edit', 'EditController')->name('admin.role.edit');
+        Route::patch('/{role}', 'UpdateController')->name('admin.role.update');
+        Route::delete('/{role}', 'DeleteController')->name('admin.role.delete');
+    });
+
     //Роуты для управления конференциями
     Route::group(['namespace' => 'Conference', 'prefix' => 'conference'], function () {
         Route::get('/', 'IndexController')->name('admin.conference.index');
@@ -114,15 +125,15 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::delete('/{conference}', 'DeleteController')->name('admin.conference.delete');
     });
 
-    //Роуты для управления ролями
-    Route::group(['namespace' => 'Role', 'prefix' => 'role'], function () {
-        Route::get('/', 'IndexController')->name('admin.role.index');
-        Route::get('/create', 'CreateController')->name('admin.role.create');
-        Route::post('/', 'StoreController')->name('admin.role.store');
-        Route::get('/{role}', 'ShowController')->name('admin.role.show');
-        Route::get('/{role}/edit', 'EditController')->name('admin.role.edit');
-        Route::patch('/{role}', 'UpdateController')->name('admin.role.update');
-        Route::delete('/{role}', 'DeleteController')->name('admin.role.delete');
+    //Роуты для управления заявками
+    Route::group(['namespace' => 'Application', 'prefix' => 'application'], function () {
+        Route::get('/', 'IndexController')->name('admin.application.index');
+        Route::get('/create', 'CreateController')->name('admin.application.create');
+        Route::post('/', 'StoreController')->name('admin.application.store');
+        Route::get('/{application}', 'ShowController')->name('admin.application.show');
+        Route::get('/{application}/edit', 'EditController')->name('admin.application.edit');
+        Route::patch('/{application}', 'UpdateController')->name('admin.application.update');
+        Route::delete('/{application}', 'DeleteController')->name('admin.application.delete');
     });
 });
 

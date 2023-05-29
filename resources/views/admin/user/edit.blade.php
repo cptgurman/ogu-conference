@@ -19,13 +19,12 @@
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
-
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
         <!-- Main content -->
         <div class="content">
             <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Добавить категорию</h3>
-                </div>
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form action="{{ route('admin.user.update', $user->id) }}" method="POST">
@@ -49,13 +48,21 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label>Пароль</label>
+                            <input type="text" name="password" class="form-control" placeholder="Введите пароль"
+                                value="{{ old('password') ? old('password') : $user->password }}">
+                            @error('password')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div class="form-group w-25">
                             <label>Роль</label>
-                            <select class="form-control" name="role">
-                                <option disabled selected>Выберите роль</option>
+                            <select class="form-control select2" multiple name="role_ids[]">
                                 @foreach ($roles as $id => $role)
-                                    <option value="{{ $id }}" {{ $id == $user->role ? 'selected' : '' }}>
-                                        {{ $role }}
+                                    <option value="{{ $id }}"
+                                        {{ in_array($id, $user->roles->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                        {{ $role->name }}
                                     </option>
                                 @endforeach
                             </select>

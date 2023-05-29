@@ -6,6 +6,12 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <input class="nav-link" type="submit" value="Выйти">
+            </form>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
             <a href="index3.html" class="nav-link">Сайт</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">

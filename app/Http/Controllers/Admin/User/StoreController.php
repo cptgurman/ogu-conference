@@ -16,8 +16,22 @@ class StoreController extends Controller
 {
     public function __invoke(StoreRequest $request)
     {
-        $data = $request->validated(); //данные пришедшие в случае успешной валидации
-        StoreUserJob::dispatch($data); //Передаем в очередь задание
-        return redirect()->route('admin.user.index');
+        try {
+            $data = $request->validated(); //данные пришедшие в случае успешной валидации
+
+            // Роли пользователя
+            $roles = $data['role_ids'];
+            unset($data['role_ids']);
+
+            $data['password'] = Hash::make($data['password']);
+
+            // Добавляем пользователя и роли
+            $user = User::firstOrCreate(['email' => $data['email']], $data);
+
+            $user->roles()->attach($roles);
+            return redirect()->route('admin.user.index');
+        } catch (\Exception $exception) {
+            abort(404);
+        }
     }
 }
