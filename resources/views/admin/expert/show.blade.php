@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Список заявок</h1>
+                        <h1 class="m-0">Список заявок для {{ $expert->name }}</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -19,17 +19,6 @@
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
-
-        <!-- Main content -->
-        <div class="row p-3">
-            <div class="content">
-                <div class="container-fluid">
-                    <a href="{{ route('admin.application.create') }}" type="button" class="btn btn-primary">Добавить</a>
-                </div>
-                <!-- /.container-fluid -->
-            </div>
-        </div>
-        <!-- /.content -->
 
         <div class="row p-3">
             <div class="col-12">
@@ -43,36 +32,27 @@
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr class="text-center">
-                                    <th>№</th>
+                                    <th>№ заявки</th>
                                     <th>Конференция</th>
-                                    <th>Участник</th>
-                                    <th>Эксперт</th>
-                                    <th>Дата подачи</th>
+                                    <th>Секция</th>
+                                    <th>Статус</th>
+                                    <th>Комментарий</th>
                                     <th>Файл</th>
-                                    <th>Приглашение</th>
-                                    <th>Отель</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($applications as $application)
                                     <tr class="text-center">
-                                        <td>
-                                            <a
-                                                href="{{ route('admin.application.show', $application->id) }}">{{ $application->id }}</a>
-                                        </td>
+                                        <td>{{ $application->id }}</td>
                                         <td>{{ $application->conference->name }}</td>
-                                        <td>{{ $application->user->name }}</td>
-                                        <td>{{ $application->expert->first()->name }}</td>
-                                        <td>{{ $application->created_at }}</td>
+                                        <td>{{ $application->section->name }}</td>
+                                        <td>{{ $application->status->name }}</td>
+                                        <td>//Комменты в процессе</td>
                                         <td><a href="{{ asset('storage/' . $application->file) }}">Скачать</a></td>
-                                        <td>{{ $application->invitation ? 'Да' : 'Нет' }}</td>
-                                        <td>{{ $application->hotel ? 'Да' : 'Нет' }}</td>
                                         <td>
-                                            <a href="{{ route('admin.application.show', $application->id) }}"> <i
+                                            <a href="{{ route('admin.expert.show', $expert->id) }}"> <i
                                                     class="fa fa-eye pr-3"></i></a>
-
-                                            <a href="{{ route('admin.application.edit', $application->id) }}"> <i
-                                                    class="fa fa-pen text-gray"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -85,7 +65,7 @@
                 </div>
 
                 <div class="">
-                    {{ $applications->links() }}
+                    {{-- {{ $expert->links() }} --}}
                 </div>
                 <!-- /.card -->
             </div>

@@ -135,6 +135,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::patch('/{application}', 'UpdateController')->name('admin.application.update');
         Route::delete('/{application}', 'DeleteController')->name('admin.application.delete');
     });
+
+    //Роуты для экспертов
+    Route::group(['namespace' => 'Expert', 'prefix' => 'expert'], function () {
+        Route::get('/', 'IndexController')->name('admin.expert.index');
+        Route::get('/{expert}', 'ShowController')->name('admin.expert.show');
+    });
 });
 
 Auth::routes();

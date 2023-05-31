@@ -23,8 +23,23 @@ class Application extends Model
         return $this->belongsTo(Conference::class, 'conference_id', 'id');
     }
 
+    public function section()
+    {
+        return $this->belongsTo(Section::class, 'conference_section_id', 'id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(ApplicationStatus::class, 'status_id', 'id');
+    }
+
+    public function expert()
+    {
+        return $this->belongsToMany(User::class, 'expert_application', 'application_id', 'user_id');
     }
 }
